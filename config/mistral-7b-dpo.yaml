@@ -31,8 +31,8 @@ training:
   max_length: 1536
   remove_unused_columns: False
 tokens:
-  hf: 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
-  wb: 6c2d72a2a160656cfd8ff15575bd8ef2019edacc
+  hf: xxx
+  wb: xxx
   wb_project: "xinghua_ast"
 dataset:
   name: "Intel/orca_dpo_pairs"

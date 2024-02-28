@@ -1,0 +1,10 @@
+transformers==4.38.1
+datasets
+torch
+torchvision
+torchaudio
+trl
+peft
+wandb
+sentencepiece
+bitsandbytes

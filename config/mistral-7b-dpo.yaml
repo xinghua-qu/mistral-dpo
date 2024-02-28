@@ -1,0 +1,44 @@
+model:
+  name: "teknium/OpenHermes-2.5-Mistral-7B"
+  new_name: "NeuralHermes-2.5-Mistral-7B"
+  quantize: true
+  bits: 4
+  padding_side: 'left'
+  torch_dtype: "float16"
+  peft:
+    r: 16
+    lora_alpha: 16
+    lora_dropout: 0.05
+    bias: "none"
+    task_type: "CAUSAL_LM"
+    target_modules: ['k_proj', 'gate_proj', 'v_proj', 'up_proj', 'q_proj', 'o_proj', 'down_proj']
+training:
+  per_device_train_batch_size: 2
+  gradient_accumulation_steps: 4
+  gradient_checkpointing: True
+  learning_rate: 0.00005
+  lr_scheduler_type: "cosine"
+  max_steps: 200
+  save_strategy: "no"
+  logging_steps: 1
+  output_dir: new_model
+  optim: "paged_adamw_32bit"
+  warmup_steps: 100
+  bf16: True
+  report_to: "wandb"
+  beta: 0.1
+  max_prompt_length: 1024
+  max_length: 1536
+  remove_unused_columns: False
+tokens:
+  hf: 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
+  wb: 6c2d72a2a160656cfd8ff15575bd8ef2019edacc
+  wb_project: "xinghua_ast"
+dataset:
+  name: "Intel/orca_dpo_pairs"
+inference:
+  do_sample: True
+  temperature: 0.7
+  top_p: 0.9
+  num_return_sequences: 1
+  max_length: 20000
